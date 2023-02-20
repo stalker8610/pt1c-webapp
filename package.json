@@ -1,0 +1,12 @@
+{
+  "name": "pt1c-webapp",
+  "version": "1.0.0",
+  "description": "Webapp for managing PT1C releases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Voronin Anton stalker8610@gmail.com",
+  "license": "ISC"
+}
