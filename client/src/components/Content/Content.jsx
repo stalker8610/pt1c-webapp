@@ -11,7 +11,6 @@ import copyIcon from './icon-copy.png';
 const Content = (props) => {
 
     let { componentType } = useParams();
-    /* componentType = componentType || 'server'; */
     const dispatch = useDispatch();
     const status = useSelector(state => state.files.status);
     const files = useSelector(selectFilesForComponent(componentType));

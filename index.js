@@ -16,7 +16,6 @@ const checkAuth = (req, res, next) => {
         return next();
     } else {
         res.status(403).end();
-       /* throw new Error('Forbidden'); */
     }
 
 }
