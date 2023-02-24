@@ -1,12 +1,32 @@
 {
   "name": "pt1c-webapp",
   "version": "1.0.0",
-  "description": "Webapp for managing PT1C releases",
+  "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pkg": "pkg . --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stalker8610/pt1c-webapp.git"
   },
   "keywords": [],
-  "author": "Voronin Anton stalker8610@gmail.com",
-  "license": "ISC"
+  "author": "Voronin Anton <stalker8610@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stalker8610/pt1c-webapp/issues"
+  },
+  "homepage": "https://github.com/stalker8610/pt1c-webapp#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "pkg": "^5.8.0"
+  },
+  "pkg": {
+    "scripts": "api/*.js",
+    "assets": "client/build/**/*",
+    "targets": [ "node18-win-x64" ],
+    "outputPath": "dist"
+  }
 }

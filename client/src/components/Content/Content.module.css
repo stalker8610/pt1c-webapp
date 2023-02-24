@@ -1,0 +1,63 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px;
+}
+
+.content h2 {
+    color: #333;
+}
+
+.content table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+.content table td,
+.content table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.leftAligned {
+    text-align: left;
+}
+
+.content table tr:nth-child(odd) {
+    background-color: #e0e0e0;
+}
+
+.content table tr:hover {
+    background-color: #ccc;
+ 
+}
+
+.content table button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.content table button:active {
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
+
+.content table th {
+    line-height: 40px;
+    background-color: #04AA6D;
+    color: white;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.content a {
+    text-decoration: none;
+}
+

@@ -1,0 +1,12 @@
+.fileLink {
+    display: inline-block;
+    line-height: 40px;
+}
+
+.fileLink a:link, .fileLink a:visited {
+    color: #444;
+}
+
+.fileLink a:hover, .fileLink a:active {
+    color: black;
+}

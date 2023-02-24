@@ -1,0 +1,23 @@
+
+.appWrapper {
+    max-width: 750px;
+    position: absolute;
+    width: 80vw;
+    max-width: 900px;
+    left: 50%;
+    transform: translate(-50%, 10px);
+}
+
+.App {
+    display: grid;
+    grid-template-areas: "navbar" "content";
+    grid-template-rows: 41px 1fr;
+    min-height: calc(100vh - 20px);
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.appContent {
+    background-color: #EEE;
+    color: #444;
+}
