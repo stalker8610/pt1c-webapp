@@ -22,7 +22,8 @@ module.exports = {getFiles}
 
 async function getFilesFromDir(dir) {
 
-    const full_dir = path.join('D:\\PT1C_CATALOG_SAMPLE', dir);
+    const baseDir = 'D:\\PT1C_CATALOG_SAMPLE';
+    const full_dir = path.join(baseDir, dir);
     const fileNames = await fsPromises.readdir(full_dir);
     return await Promise.all(fileNames.map( async(fileName)=>{
         

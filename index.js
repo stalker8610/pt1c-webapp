@@ -1,6 +1,6 @@
 const express = require('express');
-const path =require('node:path');
-const getFiles =require('./api/files.js').getFiles;
+const path = require('node:path');
+const getFiles = require('./api/files.js').getFiles;
 
 /* const __dirname = path.resolve(); */
 
@@ -8,15 +8,14 @@ const app = express();
 const port = 8002;
 
 const checkAuth = (req, res, next) => {
+
+    //const resolvedIPs = ['178.209.110.118'];
+    const remoteAdress = String(req.socket.remoteAddress);
     
-    const resolvedIPs = ['178.209.110.118'];
-    
-    const remoteIP = req.socket.remoteAddress;
-    console.log();
-    if (!process.pkg || resolvedIPs.includes(remoteIP)){
+    if (!process.pkg || remoteAdress.match(/::ffff:192\.168\.\d+\.\d+$|::1$/)) {
         return next();
     } else {
-        res.status(403).end();
+        res.send(403).end();
     }
 
 }
