@@ -5,14 +5,15 @@ const getFiles =require('./api/files.js').getFiles;
 /* const __dirname = path.resolve(); */
 
 const app = express();
-const port = 8080;
+const port = 8002;
 
 const checkAuth = (req, res, next) => {
     
     const resolvedIPs = ['178.209.110.118'];
     
     const remoteIP = req.socket.remoteAddress;
-    if (true || resolvedIPs.includes(remoteIP)){
+    console.log();
+    if (!process.pkg || resolvedIPs.includes(remoteIP)){
         return next();
     } else {
         res.status(403).end();
