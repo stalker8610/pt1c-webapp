@@ -43,7 +43,11 @@
     border: none;
 }
 
-.content table button:active {
+.content table button:disabled {
+    opacity: 0.3;
+}
+
+.content table button:enabled:active {
     position: relative;
     left: 1px;
     top: 1px;

@@ -1,6 +1,6 @@
 import { fetchFiles, selectFilesForComponent } from "../../redux/filesSlice";
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FileLink from './FileLink/FileLink';
 import classes from './Content.module.css';
@@ -14,6 +14,13 @@ const Content = (props) => {
     const dispatch = useDispatch();
     const status = useSelector(state => state.files.status);
     const files = useSelector(selectFilesForComponent(componentType));
+    const [clipboardIsAvailable, setClipboardIsAvailable] = useState(true);
+
+    useEffect(() => {
+        if (!navigator.clipboard) {
+            setClipboardIsAvailable(false);
+        }
+    }, [])
 
     useEffect(() => {
         if (status === 'idle') {
@@ -22,7 +29,7 @@ const Content = (props) => {
     }, [status, dispatch])
 
     const getAbsoluteLink = (path) => {
-        return ` http://file.alexrovich.ru:8008/DEV/TelephonyPanel/${path.replace(/\\/g, '/')}`;
+        return `http://file.alexrovich.ru:8008/DEV/TelephonyPanel/${path.replace(/\\/g, '/')}`;
     }
 
     const formatFileSize = (size) => {
@@ -39,6 +46,7 @@ const Content = (props) => {
     }
 
     const copyToClipboard = (e, link) => {
+        e.preventDefault();
         navigator.clipboard.writeText(link)
             .then(() => {
                 /* alert('copied'); */
@@ -67,10 +75,11 @@ const Content = (props) => {
                         <td className={classes.centered}>{formatFileSize(el.size)}</td>
                         <td className={classes.centered}>{formatFileDate(el.date)}</td>
                         <td className={classes.centered}>
-                            <button>
-                            <img title='Copy link' src={copyIcon} onClick={(e) => copyToClipboard(e, getAbsoluteLink(el.path))} />
+                            <button disabled={!clipboardIsAvailable}>
+                                <img title={clipboardIsAvailable ? 'Copy link' : 'Clipboard is unavailable due to an insecure connection'}
+                                    src={copyIcon} onClick={(e) => clipboardIsAvailable && copyToClipboard(e, getAbsoluteLink(el.path))} />
                             </button>
-                            </td>
+                        </td>
                     </tr>)}
                 </tbody>
             </table>

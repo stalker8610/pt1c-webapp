@@ -18,22 +18,32 @@ async function getFiles() {
 
 }
 
-module.exports = {getFiles}
+module.exports = { getFiles }
 
 async function getFilesFromDir(dir) {
 
-    const baseDir = 'D:\\PT1C_CATALOG_SAMPLE';
+    const baseDir = 'C:\\Apache24\\htdocs\\DEV\\TelephonyPanel';
     const full_dir = path.join(baseDir, dir);
     const fileNames = await fsPromises.readdir(full_dir);
-    return await Promise.all(fileNames.map( async(fileName)=>{
+    let result = await Promise.all(fileNames.map(async (fileName) => {
+
+        const stats = await fsPromises.stat(path.join(full_dir, fileName));
         
-        const stats = await fsPromises.stat(path.join(full_dir,fileName));
+        if (stats.isDirectory()) return;
+        
         return {
             fileName,
             path: path.join(dir, fileName),
             size: stats.size,
             date: stats.birthtime,
         }
-    }).sort((f1, f2)=>f2.birthtime-f1.birthtime));
+    }));
+
+    result = result.filter(el=>el); //skip directories
+    result.sort((f1, f2) => f2.date - f1.date); //sort from newer to older
+
+    return result;
 
 }
+
+
