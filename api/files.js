@@ -36,6 +36,7 @@ async function getFilesFromDir(dir) {
             path: path.join(dir, fileName),
             size: stats.size,
             date: stats.birthtime,
+            url: `http://file.alexrovich.ru:8008/DEV/TelephonyPanel/${path.join(dir, fileName).replace(/\\/g, '/')}`,
         }
     }));
 

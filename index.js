@@ -9,10 +9,13 @@ const port = 8002;
 
 const checkAuth = (req, res, next) => {
 
-    //const resolvedIPs = ['178.209.110.118'];
-    const remoteAdress = String(req.socket.remoteAddress);
     
-    if (!process.pkg || remoteAdress.match(/::ffff:192\.168\.\d+\.\d+$|::1$/)) {
+    const remoteAddress = String(req.socket.remoteAddress);
+    
+    const userAgent = req.get('User-Agent');
+    const isUserAgentPT1C = !!userAgent?.match(/^PT1C Client\/(\d+\.\d+\.\d+)$/);
+
+    if (req.originalUrl === '/api/files' && isUserAgentPT1C || !process.pkg || remoteAddress.match(/::ffff:192\.168\.\d+\.\d+$|::1$/)) {
         return next();
     } else {
         res.send(403).end();

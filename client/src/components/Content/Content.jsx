@@ -71,7 +71,7 @@ const Content = (props) => {
                     </tr>
                     {files.map((el, index) => <tr>
                         <td className={classes.centered}>{index + 1}</td>
-                        <td><FileLink key={el.fileName} href={getAbsoluteLink(el.path)} fileName={el.fileName} /></td>
+                        <td><FileLink key={el.fileName} href={/* getAbsoluteLink(el.path) */el.url} fileName={el.fileName} /></td>
                         <td className={classes.centered}>{formatFileSize(el.size)}</td>
                         <td className={classes.centered}>{formatFileDate(el.date)}</td>
                         <td className={classes.centered}>
